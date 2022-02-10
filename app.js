@@ -16,7 +16,7 @@ db.sync()
 const app = express();
 
 // Habilitar bodyParser para leer datos del formulario
-app.use( express.urlencoded({extended: true}) );
+app.use( express.json() );
 
 // Rutas
 app.use('/auth/login', require('./routes/login') );

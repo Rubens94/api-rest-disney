@@ -3,8 +3,14 @@ const { check } = require('express-validator');
 
 const { login } = require('../controllers/login');
 
+const { validarCampos } = require('../middlewares/validar-campos')
+
 const router = Router();
 
-router.get('/', login);
+router.post('/', [
+    check('email', 'El correo es obligatorio').isEmail(),
+    check('password', 'La contraseña es obligatoria').not().isEmpty(),
+    validarCampos
+], login);
 
 module.exports = router;
