@@ -3,7 +3,7 @@ const { check } = require('express-validator');
 
 const { register } = require('../controllers/register');
 
-const { validarRegistro } = require('../middlewares/validarRegistro');
+const { validarRegistro } = require('../middlewares');
 
 const router = Router();
 

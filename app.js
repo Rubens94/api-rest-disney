@@ -21,6 +21,7 @@ app.use( express.json() );
 // Rutas
 app.use('/auth/login', require('./routes/login') );
 app.use('/auth/register', require('./routes/register') );
+app.use('/characters', require('./routes/characters') );
 
 app.listen(port, () => {
     console.log(`Server corriendo en el puerto ${port}`);
