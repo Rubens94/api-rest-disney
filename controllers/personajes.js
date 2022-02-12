@@ -15,10 +15,10 @@ const crearPersonaje = async(req, res) => {
             historia
         });
     
-        res.json('Personaje creado');
+        res.json({'msg':'Personaje creado'});
     } catch (err) {
         console.log(err)
-        res.status(501).json('No se pudo crear personaje');
+        res.status(501).json({'msg':'No se pudo crear personaje'});
     }
 }
 

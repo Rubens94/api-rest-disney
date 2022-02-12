@@ -11,7 +11,7 @@ const register = async(req, res) => {
 
         // Verificar si ya existe email registrado
         if ( usuario ) {
-            return res.status(400).json('Email ya registrado, intente con otro');
+            return res.status(400).json({'msg':'Email ya registrado, intente con otro'});
         }
 
         await Usuarios.create({
@@ -19,11 +19,11 @@ const register = async(req, res) => {
             password
         });
 
-        res.json('Usuario creado con éxito')
+        res.json({'msg':'Usuario creado con éxito'});
 
     } catch(err) {
         console.log(err)
-        res.json('Hubo un problema al registrar el usuario');
+        res.json({'msg':'Hubo un problema al registrar el usuario'});
     }
 }
 

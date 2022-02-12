@@ -35,14 +35,11 @@ const login = async(req, res) => {
         // Generar JWT
         const token = await generarJWT( usuario.id );
 
-        res.json({
-            usuario,
-            token
-        });
+        res.json({token});
 
     } catch(err) {
         console.log(err);
-        res.status(500).json('No se pudo iniciar la sesión, revisar con el administrador');
+        res.status(500).json({'msg':'No se pudo iniciar la sesión, revisar con el administrador'});
     }
 }
 

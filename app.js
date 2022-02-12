@@ -22,6 +22,10 @@ app.use( express.json() );
 app.use('/auth/login', require('./routes/login') );
 app.use('/auth/register', require('./routes/register') );
 app.use('/characters', require('./routes/characters') );
+app.use('/movies', require('./routes/movies') );
+app.use('/genre', require('./routes/genre') );
+app.use('/character-movie', require('./routes/characterMovie') );
+app.use('/movie-genre', require('./routes/movieGenre') );
 
 app.listen(port, () => {
     console.log(`Server corriendo en el puerto ${port}`);

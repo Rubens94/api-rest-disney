@@ -15,13 +15,14 @@ const Personajes = db.define('personajes', {
         type: Sequelize.INTEGER,
     },
     peso: {
-        type: Sequelize.FLOAT(3,2),
+        type: Sequelize.FLOAT,
     },
     historia: {
         type: Sequelize.STRING,
     },
     img: {
         type: Sequelize.STRING,
+        defaultValue: null
     }
 });
 
