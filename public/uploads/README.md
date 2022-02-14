@@ -1,1 +1,1 @@
-# Carpetas para subir las imágenes de los personajes, películas y géneros
+# Carpetas para las imágenes de los personajes, películas y géneros
