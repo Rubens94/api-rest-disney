@@ -20,7 +20,7 @@ const Peliculas = db.define('peliculas', {
     },
     img: {
         type: Sequelize.STRING,
-        defaultValue: null
+        defaultValue: 'empty'
     }
 });
 

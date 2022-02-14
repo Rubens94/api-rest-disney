@@ -22,7 +22,7 @@ const Personajes = db.define('personajes', {
     },
     img: {
         type: Sequelize.STRING,
-        defaultValue: null
+        defaultValue: 'empty'
     }
 });
 

@@ -11,12 +11,12 @@ const crearPersonajePelicula = async(req, res) => {
 
         // Verificar que exista el personaje
         if (!character) {
-            return res.status(400).json({'msg':`${personaje}, no se encuentra registrado`});
+            return res.status(400).json({msg:`${personaje}, no se encuentra registrado`});
         }
 
         // Verificar si la película o serie existe
         if (!movie) {
-            return res.status(400).json({'msg':`${pelicula}`});
+            return res.status(400).json({msg:`${pelicula}`});
         }
 
         // Guardar relación
@@ -28,10 +28,10 @@ const crearPersonajePelicula = async(req, res) => {
             peliculaId
         });
 
-        res.json({'msg':`Personaje ${personaje} se asoció con la serie o pelicula ${pelicula}`});
+        res.json({msg:`Personaje ${personaje} se asoció con la serie o pelicula ${pelicula}`});
     } catch (err) {
         console.log(err);
-        res.status(501).json({'msg':'No se pudo realizar la relación de personaje con la película o serie'});
+        res.status(501).json({msg:'No se pudo realizar la relación de personaje con la película o serie'});
     }
 }
 

@@ -13,10 +13,10 @@ const crearPelicula = async(req, res) => {
             calificacion
         });
 
-        res.json({'msg':'Pelicula / Serie creada'});
+        res.json({msg:'Pelicula / Serie creada'});
     } catch (err) {
         console.log(err);
-        res.status(501).json({'msg':'No se pudo crear la película o serie'});
+        res.status(501).json({msg:'No se pudo crear la película o serie'});
     }
 }
 

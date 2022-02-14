@@ -13,7 +13,7 @@ const Generos = db.define('generos', {
     },
     img: {
         type: Sequelize.STRING,
-        defaultValue: null
+        defaultValue: 'empty'
     }
 });
 

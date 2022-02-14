@@ -13,7 +13,7 @@ const crearGenero = async(req, res) => {
         res.json({'msg':'Género creado'});
     } catch (err) {
         console.log(err);
-        res.status(501).json({'msg':'No se pudo crear el género'});
+        res.status(501).json({msg:'No se pudo crear el género'});
     }
 }
 

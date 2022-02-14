@@ -12,12 +12,12 @@ const crearPeliculaGenero = async(req, res) => {
 
         // Verificar si existe la película o serie
         if (!movie) {
-            return res.status(400).json({'msg':'No se encuentra la película o serie'});
+            return res.status(400).json({msg:'No se encuentra la película o serie'});
         }
 
         // Verificar si existe el genero
         if (!genre) {
-            return res.status(400).json({'msg':'El género no se encuentra'})
+            return res.status(400).json({msg:'El género no se encuentra'})
         }
 
         // Crear relación
@@ -29,10 +29,10 @@ const crearPeliculaGenero = async(req, res) => {
             peliculaId
         });
 
-        res.json({'msg':`${pelicula} se asoció con ${genero}`});
+        res.json({msg:`${pelicula} se asoció con ${genero}`});
     } catch (err) {
         console.log(err);
-        res.status(501).json({'msg':'No se pudo crear la relación entre el género y la película o serie'});
+        res.status(501).json({msg:'No se pudo crear la relación entre el género y la película o serie'});
     }
 
 }
