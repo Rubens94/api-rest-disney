@@ -1,0 +1,1 @@
+# Carpetas para subir las imágenes de los personajes, películas y géneros
