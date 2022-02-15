@@ -72,7 +72,6 @@ const mostrarPeliculas = async(req, res) => {
 const mostrarPelicula = async(req, res) => {
 
     const { name, genre, order } = req.query;
-    const orderUpperCase = order.toUpperCase();
     let pelicula;
 
     if (name) {
@@ -100,6 +99,8 @@ const mostrarPelicula = async(req, res) => {
             }]
         });
     } else if (order) {
+        
+        const orderUpperCase = order.toUpperCase();
 
         switch (orderUpperCase) {
             case 'ASC':
