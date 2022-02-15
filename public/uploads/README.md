@@ -1,0 +1,1 @@
+# Carpetas para las imágenes de los personajes, películas y géneros
