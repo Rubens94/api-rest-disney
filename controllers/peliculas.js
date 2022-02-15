@@ -1,4 +1,5 @@
-const Peliculas = require("../models/Peliculas");
+const Peliculas = require('../models/Peliculas');
+const Generos = require('../models/Generos');
 
 const crearPelicula = async(req, res) => {
 
@@ -59,8 +60,90 @@ const eliminarPelicula = async(req, res) => {
     
 }
 
+const mostrarPeliculas = async(req, res) => {
+
+    const peliculas = await Peliculas.findAll({
+        attributes: ['id','img', 'titulo', 'fecha']
+    });
+
+    res.json({peliculas});
+}
+
+const mostrarPelicula = async(req, res) => {
+
+    const { name, genre, order } = req.query;
+    const orderUpperCase = order.toUpperCase();
+    let pelicula;
+
+    if (name) {
+
+        pelicula = await Peliculas.findOne({
+            where: {
+                'titulo': name
+            },
+            attributes: ['id', 'titulo', 'fecha', 'calificacion', 'img'],
+            include: [{
+                model: Generos,
+                attributes: ['id', 'nombre', 'img']
+            }]
+        });
+    } else if (genre) {
+
+        pelicula = await Generos.findOne({
+            where: {
+                'nombre': genre
+            },
+            attributes: ['id', 'nombre', 'img'],
+            include: [{
+                model: Peliculas,
+                attributes: ['id', 'titulo', 'fecha', 'calificacion', 'img'],
+            }]
+        });
+    } else if (order) {
+
+        switch (orderUpperCase) {
+            case 'ASC':
+                
+                pelicula = await Peliculas.findAll({
+                    order: [['titulo', order]],
+                    attributes: ['id', 'titulo', 'fecha', 'calificacion', 'img'],
+                    include: [{
+                        model: Generos,
+                        attributes: ['id', 'nombre', 'img']
+                    }]
+                });
+                break;
+                case 'DESC':
+                
+                    pelicula = await Peliculas.findAll({
+                        order: [['titulo', order]],
+                        attributes: ['id', 'titulo', 'fecha', 'calificacion', 'img'],
+                        include: [{
+                            model: Generos,
+                            attributes: ['id', 'nombre', 'img']
+                        }]
+                    });
+                    break;
+
+            default:
+                return res.json({msg:'Orden no válido'});
+        }
+    } else {
+        return res.status(400).json({msg:'El filtro no existe'});
+    }
+
+    // Verificar si existe película o serie
+    if (!pelicula) {
+        return res.status(400).json({msg:'No existe personaje'});
+    }
+
+    res.json(pelicula);
+}
+
 module.exports = {
     crearPelicula,
     editarPelicula,
-    eliminarPelicula
+    eliminarPelicula,
+    mostrarPeliculas,
+    mostrarPelicula
 }

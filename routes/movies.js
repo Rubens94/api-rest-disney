@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { crearPelicula, editarPelicula, eliminarPelicula } = require('../controllers/peliculas');
+const { crearPelicula, editarPelicula, eliminarPelicula, mostrarPeliculas, mostrarPelicula } = require('../controllers/peliculas');
 
 const { validarJWT, validarCampos } = require('../middlewares');
 
@@ -30,6 +30,13 @@ router.delete('/:id', [
 ], eliminarPelicula);
 
 // Mostrar todas las películas o series
-// Pendiente
+router.patch('/', [
+    validarJWT
+], mostrarPeliculas);
+
+// Mostrar película o serie por filtro
+router.get('/', [
+    validarJWT
+], mostrarPelicula);
 
 module.exports = router;

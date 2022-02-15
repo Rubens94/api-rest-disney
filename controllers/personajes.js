@@ -74,17 +74,49 @@ const mostrarPersonaje = async(req, res) => {
     const { name, age, movies } = req.query;
     let personaje;
     
-    // Pendiente por hacer controlador
-    if (name){
+    if (name) {
 
-        
+        personaje = await Personajes.findOne({
+            where: {
+                'nombre': name
+            },
+            attributes: ['id', 'nombre', 'edad', 'peso', 'historia', 'img'],
+            include: [{
+                model: Peliculas,
+                attributes: ['id', 'titulo', 'fecha', 'calificacion', 'img']
+            }]
+        });
+
     } else if (age) {
 
+        personaje = await Personajes.findOne({
+            where: {
+                'edad': age
+            },
+            attributes: ['id', 'nombre', 'edad', 'peso', 'historia', 'img'],
+            include: [{
+                model: Peliculas,
+                attributes: ['id', 'titulo', 'fecha', 'calificacion', 'img']
+            }]
+        });
+
     } else if (movies) {
+
+        personaje = await Peliculas.findOne({
+            where: {
+                'titulo': movies
+            },
+            attributes: ['id', 'titulo', 'fecha', 'calificacion', 'img'],
+            include: [{
+                model: Personajes,
+                attributes: ['id', 'nombre', 'edad', 'peso', 'historia', 'img']
+            }]
+        });
 
     } else {
         return res.status(400).json({msg: 'No existe el filtro de búsqueda'});
     }
+
     // Verificar si existe personaje
     if (!personaje) {
         return res.status(400).json({msg: 'No existe el personaje'});
