@@ -1,4 +1,5 @@
 const Usuarios = require('../models/Usuarios');
+const transporter = require('../config/email');
 
 const register = async(req, res) => {
 
@@ -18,6 +19,14 @@ const register = async(req, res) => {
             email,
             password
         });
+
+        // Enviar e-mail
+        await transporter.sendMail({
+            from: `"Bienvenido" <${process.env.MAIL_USERNAME}>`,
+            to: email,
+            subject: "Bienvenido a la API REST del mundo de Disney",
+            html: "<p>Bienvenido a la API REST del mundo de Disney donde podrás crear, editar, eliminar de series, películas, usuarios y géneros</p>",
+          });
 
         res.json({msg:'Usuario creado con éxito'});
 
