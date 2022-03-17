@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const fileUpload = require('express-fileupload');
+const cors = require('cors');
 const db = require('./config/db');
 
 const port = process.env.PORT;
@@ -15,6 +16,9 @@ db.sync()
 
 // Crear app de express 
 const app = express();
+
+// CORS
+app.use( cors() );
 
 // Habilitar bodyParser para leer datos del formulario
 app.use( express.json() );
