@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { crearPelicula, editarPelicula, eliminarPelicula, mostrarPeliculas, mostrarPelicula } = require('../controllers/peliculas');
 
-const { validarJWT, validarCampos } = require('../middlewares');
+const { validarJWT, validarCampos, cacheInit } = require('../middlewares');
 
 const router = Router();
 
@@ -36,7 +36,8 @@ router.patch('/', [
 
 // Mostrar película o serie por filtro
 router.get('/', [
-    validarJWT
+    validarJWT,
+    cacheInit
 ], mostrarPelicula);
 
 module.exports = router;

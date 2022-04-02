@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { crearGenero, editarGenero, eliminarGenero, mostrarGeneros } = require('../controllers/genero');
 
-const { validarJWT, validarCampos } = require('../middlewares');
+const { validarJWT, validarCampos, cacheInit } = require('../middlewares');
 
 const router = Router();
 
@@ -27,7 +27,8 @@ router.delete('/:id', [
 
 // Mostrar géneros
 router.get('/', [
-    validarJWT
+    validarJWT,
+    cacheInit
 ], mostrarGeneros)
 
 module.exports = router;
